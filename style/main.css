@@ -114,10 +114,12 @@ body {
 
     position: absolute;
 
-    top:-10%;
-    left: 10%;
+    top:-5%;
+    left: 9.17%;
 
     z-index: 9;
+
+    display: none;
 }
 
 #curtain-top {

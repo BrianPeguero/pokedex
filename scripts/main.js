@@ -6,6 +6,53 @@ let welcomePageName = document.getElementById("welcome-page-name")
 let mainContainer = document.getElementById("main-container")
 let curtain = document.getElementById('curtain')
 let pokemonForm = document.getElementById('pokemon-search-form')
+let LoadingScreen = document.getElementById('loading-screen')
+let curtainTop = document.getElementById("curtain-top")
+let curtainBottom = document.getElementById("curtain-bottom")
+
+pokemonForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    pokemon = pokemonForm[0].value
+
+    getPokemon(pokemon)
+
+    LoadingScreen.style.display = "block"
+    setTimeout(() => {
+        LoadingScreen.style.display = "none"
+        openCurtain()
+    }, 875)
+})
+
+async function getPokemon(pokemon) {
+    try {
+        request = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`)
+        response = await request.json()
+
+        console.log( response["name"])
+        // pokemonName.innerHTML = response["name"]
+        // pokemonImg.src = `https://www.pkparaiso.com/imagenes/xy/sprites/animados/${response["name"]}.gif`
+    } catch (err) {
+        // error.innerHTML = "There was an error please try again."
+    }
+}
+
+function openCurtain() {
+    for (let i = 0; i < 1000; i++) {
+        setTimeout(() => {
+            curtainTop.style.top = `${-i}px`
+        }, i)
+    }
+    for (let i = 0; i < 1000; i++) {
+        setTimeout(() => {
+            curtainBottom.style.bottom = `${-i}px`
+        }, i)
+    }
+}
+
+
+
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
