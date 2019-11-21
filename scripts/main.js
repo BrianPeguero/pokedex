@@ -1,4 +1,5 @@
 let trainer = new Trainer()
+let pkmn = new Pokemon()
 
 let form = document.getElementById('welcome-page-form')
 let welcomePage = document.getElementById('welcome-page')
@@ -13,9 +14,9 @@ let curtainBottom = document.getElementById("curtain-bottom")
 pokemonForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    pokemon = pokemonForm[0].value
-
-    getPokemon(pokemon)
+    pokemonName = pokemonForm[0].value
+    getPokemon(pokemonName)
+    displayPokemon()
 
     LoadingScreen.style.display = "block"
     setTimeout(() => {
@@ -24,31 +25,90 @@ pokemonForm.addEventListener('submit', (e) => {
     }, 875)
 })
 
-async function getPokemon(pokemon) {
+async function getPokemon(pokemonName) {
     try {
-        request = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`)
-        response = await request.json()
+        let request = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
+        let response = await request.json()
 
-        console.log( response["name"])
-        // pokemonName.innerHTML = response["name"]
-        // pokemonImg.src = `https://www.pkparaiso.com/imagenes/xy/sprites/animados/${response["name"]}.gif`
+        createPokemon(response)
+
+    } catch (err) {
+        // error.innerHTML = "There was an error please try again."
+    }
+}
+
+async function getPokemonDescription(url) {
+    try {
+        let request = await fetch(url)
+        let response = await request.json()
+
+        pkmn.setDescription(response["genera"][2]["genus"])
+
     } catch (err) {
         // error.innerHTML = "There was an error please try again."
     }
 }
 
 function openCurtain() {
-    for (let i = 0; i < 1000; i++) {
-        setTimeout(() => {
-            curtainTop.style.top = `${-i}px`
-        }, i)
-    }
-    for (let i = 0; i < 1000; i++) {
-        setTimeout(() => {
-            curtainBottom.style.bottom = `${-i}px`
-        }, i)
-    }
+    pokemonForm[0].classList.add("fadeout")
+
+    setTimeout(() => {
+        pokemonForm.style.display = "none"
+
+        for (let i = 0; i < 1000; i++) {
+            setTimeout(() => {
+                curtainTop.style.top = `${-i}px`
+            }, i)
+        }
+        for (let i = 0; i < 1000; i++) {
+            setTimeout(() => {
+                curtainBottom.style.bottom = `${-i}px`
+            }, i)
+        }
+    }, 750)
 }
+
+function createPokemon(response) {
+    let pokemon = new Pokemon()
+
+    pokemon.setName(response["name"])
+    
+    //description
+    getPokemonDescription(response["species"]["url"])
+
+    pokemon.setNumb(response["order"])
+
+    for(let i = 0; i < 6; i++){
+        pokemon.setAStat(response["stats"][i]["stat"]["name"], response["stats"][i]["base_stat"])
+    }
+
+    pokemon.setHeight(response["height"])
+    pokemon.setWeight(response["weight"])
+
+    //pokemon img
+    if(response["order"] < 722) {
+        pokemon.setImg(`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${response["name"]}.gif`)
+    } else {
+        pokemon.setImg(response["sprites"]["front_default"])
+    }
+
+    //abilities
+    for (let i = 0; i < response["abilities"].length; i++) {
+        pokemon.abilities.push(response["abilities"][i]["ability"]["name"])
+    }
+
+    //types
+    for (let i = 0; i < response["types"].length; i++) {
+        pokemon.type.push(response["types"][i]["type"]["name"])
+    }
+
+    pkmn = pokemon
+
+    console.log(pkmn)
+
+}
+
+
 
 
 
@@ -110,4 +170,13 @@ function formDisapear() {
     setTimeout(() => {
         welcomePage.removeChild(form)
     }, 1000)
+}
+
+
+
+
+
+
+function displayPokemon() {
+
 }

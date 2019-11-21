@@ -5,15 +5,19 @@ class Pokemon {
         
         this.numb = 0
 
+        this.weight = 0
+        this.height = 0
+
         this.stats = {
-            hp: 0,
-            atk: 0,
-            def: 0,
-            spDef: 0,
-            speed: 0
+            "hp": 0,
+            "attack": 0,
+            "defense": 0,
+            "special-defense": 0,
+            "special-attack":0,
+            "speed": 0
         }
 
-        this.img = ``
+        this.img = ""
 
         this.abilities = []
 
@@ -21,34 +25,53 @@ class Pokemon {
     }
 
     //name
-    get name() {
+    getName() {
         return this.name
     }
 
-    set name(name) {
+    setName(name) {
         this.name = name
     }
 
     //description
-    get description() {
+    getDescription() {
         return this.description
     }
 
-    set description(description) {
+    setDescription(description) {
         this.description = description
     }
 
+    //weight
+    getWeight() {
+        return this.weight
+    }
+
+    setWeight(weight) {
+        this.weight = weight
+    }
+
+    //height
+    getHeight() {
+        return this.height
+    }
+
+    setHeight(height) {
+        this.height = height
+    }
+
+
     //numb
-    get numb() {
+    getNumb() {
         return this.numb
     }
 
-    set numb(numb) {
+    setNumb(numb) {
         this.numb = numb
     }
 
     //stats
-    get stats() {
+    getStats() {
         return this.stats
     }
 
@@ -57,29 +80,29 @@ class Pokemon {
     }
 
     //img
-    get img(){
+    getImg(){
         return this.img
     }
 
-    set img(img) {
+    setImg(img) {
         this.img = img
     }
 
     //abilities
-    get abilities() {
+    getAbilities() {
         return this.abilities
     }
 
-    set abilities(ability) {
+    setAbilities(ability) {
         this.abilities = ability
     }
 
     //types
-    get types() {
+    getTypes() {
         return this.types 
     }
 
-    set types(type) {
+    setTypes(type) {
         this.types.push(type)
     }
 }
