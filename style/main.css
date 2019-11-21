@@ -352,10 +352,20 @@ body {
 
 #pokemon-name {
     grid-area: pokemon-name;
+
+    display: flex;
+
+    justify-content: center;
+    align-content: center;
 }
 
 #pokemon-img {
     grid-area: pokemon-img;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
 }
 
 #pokemon-stats {
@@ -371,4 +381,23 @@ body {
     grid-template-columns: repeat(6, 12%);
 
     gap: 5%;
+}
+
+#pk-name {
+
+}
+
+#pk-type {
+
+}
+
+#pk-description {
+
+}
+
+#pk-img {
+    width: 37.5%;
+
+    padding: 0;
+    margin: 0;
 }

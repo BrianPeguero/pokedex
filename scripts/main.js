@@ -22,7 +22,7 @@ pokemonForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         LoadingScreen.style.display = "none"
         openCurtain()
-    }, 875)
+    }, 1000)
 })
 
 async function getPokemon(pokemonName) {
@@ -52,20 +52,18 @@ async function getPokemonDescription(url) {
 function openCurtain() {
     pokemonForm[0].classList.add("fadeout")
 
-    setTimeout(() => {
-        pokemonForm.style.display = "none"
+    pokemonForm.style.display = "none"
 
-        for (let i = 0; i < 1000; i++) {
-            setTimeout(() => {
-                curtainTop.style.top = `${-i}px`
-            }, i)
-        }
-        for (let i = 0; i < 1000; i++) {
-            setTimeout(() => {
-                curtainBottom.style.bottom = `${-i}px`
-            }, i)
-        }
-    }, 750)
+    for (let i = 0; i < 1000; i++) {
+        setTimeout(() => {
+            curtainTop.style.top = `${-i}px`
+        }, i)
+    }
+    for (let i = 0; i < 1000; i++) {
+        setTimeout(() => {
+            curtainBottom.style.bottom = `${-i}px`
+        }, i)
+    }
 }
 
 function createPokemon(response) {
