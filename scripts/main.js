@@ -1,5 +1,4 @@
 let trainer = new Trainer()
-let pkmn = new Pokemon()
 
 let form = document.getElementById('welcome-page-form')
 let welcomePage = document.getElementById('welcome-page')
@@ -11,18 +10,26 @@ let LoadingScreen = document.getElementById('loading-screen')
 let curtainTop = document.getElementById("curtain-top")
 let curtainBottom = document.getElementById("curtain-bottom")
 
+
+let pkName = document.getElementById('pk-name')
+let pkDescription = document.getElementById('pk-description')
+let pkType = document.getElementById('pk-type')
+let pkImg = document.getElementById('pk-img')
+
+
+let options = document.getElementById('options')
+
 pokemonForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     pokemonName = pokemonForm[0].value
     getPokemon(pokemonName)
-    displayPokemon()
 
     LoadingScreen.style.display = "block"
     setTimeout(() => {
         LoadingScreen.style.display = "none"
         openCurtain()
-    }, 1000)
+    }, 4000)
 })
 
 async function getPokemon(pokemonName) {
@@ -37,13 +44,12 @@ async function getPokemon(pokemonName) {
     }
 }
 
-async function getPokemonDescription(url) {
+async function getPokemonDescription(pokemon, url) {
     try {
         let request = await fetch(url)
         let response = await request.json()
 
-        pkmn.setDescription(response["genera"][2]["genus"])
-
+        setDResponse(pokemon, response)
     } catch (err) {
         // error.innerHTML = "There was an error please try again."
     }
@@ -57,22 +63,19 @@ function openCurtain() {
     for (let i = 0; i < 1000; i++) {
         setTimeout(() => {
             curtainTop.style.top = `${-i}px`
-        }, i)
+        }, i * 2)
     }
     for (let i = 0; i < 1000; i++) {
         setTimeout(() => {
             curtainBottom.style.bottom = `${-i}px`
-        }, i)
+        }, i * 2)
     }
 }
 
 function createPokemon(response) {
-    let pokemon = new Pokemon()
+    pokemon = new Pokemon()
 
     pokemon.setName(response["name"])
-    
-    //description
-    getPokemonDescription(response["species"]["url"])
 
     pokemon.setNumb(response["order"])
 
@@ -100,10 +103,15 @@ function createPokemon(response) {
         pokemon.type.push(response["types"][i]["type"]["name"])
     }
 
-    pkmn = pokemon
+    //description
+    getPokemonDescription(pokemon, response["species"]["url"])
 
-    console.log(pkmn)
+}
 
+function setDResponse(pokemon, desc) {
+    pokemon.setDescription(desc["genera"][2]["genus"])
+    
+    displayPokemon(pokemon)
 }
 
 
@@ -175,6 +183,14 @@ function formDisapear() {
 
 
 
-function displayPokemon() {
 
+
+
+function displayPokemon(pokemon) {
+    pkDescription.innerText = pokemon.getDescription()
+    pkImg.src = pokemon.getImg()
+    pkName.innerHTML = pokemon.getName()
+    pkType = pokemon.getTypes()
 }
+
+
