@@ -451,12 +451,12 @@ body {
 }
 
 #pk-img {
-    width: 25%;
+    width: 33%;
 
     padding: 0;
     margin: 0;
 
-    margin-right: 33%; 
+    margin-right: 15%; 
 }
 
 #hexa-stats {
@@ -465,7 +465,7 @@ body {
     padding: 0;
     margin: 0;
 
-    margin-left: 25%;
+    margin-left: 15%;
 }
 
 #options {

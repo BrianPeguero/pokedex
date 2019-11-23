@@ -28,8 +28,9 @@ class Trainer {
     addPokemonToParty(pokemon) {
         if (this.party.length < 6) {
             this.party.push(pokemon)
+            console.log(`${pokemon.getName()} was added to the party`)
         } else {
-            console.log(`${pokemon.name()} was not added to the party`)
+            console.log(`Party is full`)
         }
     }
 

@@ -1,5 +1,4 @@
 let trainer = new Trainer()
-let pokemon = new Pokemon()
 
 let form = document.getElementById('welcome-page-form')
 let welcomePage = document.getElementById('welcome-page')
@@ -43,7 +42,7 @@ pokemonForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         LoadingScreen.style.display = "none"
         openCurtain()
-    }, 1750)
+    }, 2000)
 })
 
 async function getPokemon(pokemonName) {
@@ -86,7 +85,10 @@ function openCurtain() {
     }
 }
 
+
 function createPokemon(response) {
+    pokemon = new Pokemon()
+
     pokemon.setName(response["name"])
 
     pokemon.setInt(response["id"])
@@ -292,5 +294,23 @@ searchBtn.addEventListener('click', () => {
 
 
 addToParty.addEventListener('click', () => {
+    //close the options menu
+    for (let i = 0; i <= 90; i++) {
+        setTimeout(() => {
+            options.style.transform = `rotate(${ - i}deg)`
+        }, i * 2)
+    }
+    for (let i = 0; i <= 175; i++) {
+        setTimeout(() => {
+            searchBtn.style.bottom = `${175 - i}px`
+        }, i * 2)
+    }
+    for (let i = 0; i <= 100; i++) {
+        setTimeout(() => {
+            addToParty.style.bottom = `${100 - i}px`
+        }, i * 2)
+    }
 
+    //add the pokemon to the trainers party
+    trainer.addPokemonToParty(pokemon)
 })
