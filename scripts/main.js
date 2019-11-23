@@ -268,6 +268,19 @@ searchBtn.addEventListener('click', () => {
     }
 
     //make the form appear again
+    pokemonForm.style.opacity = "0"
+    pokemonForm.style.display = "block"
+    pokemonForm.classList.remove("fadein")
+    pokemonForm[0].classList.remove("fadeout")
+    pokemonForm[0].value = ""
+    
+    setTimeout(() => {
+        for (let i = 0; i <= 100; i++) {
+            setTimeout(() => {
+                pokemonForm.style.opacity = `${i/100}`
+            }, i * 2)
+        }
+    }, 2500)
 })
 
 
