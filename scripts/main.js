@@ -43,7 +43,7 @@ pokemonForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         LoadingScreen.style.display = "none"
         openCurtain()
-    }, 1500)
+    }, 1750)
 })
 
 async function getPokemon(pokemonName) {
@@ -212,17 +212,17 @@ function formDisapear() {
 
 
 options.addEventListener('click', () => {
-    for (let i = 0; i < 135; i++) {
+    for (let i = 0; i <= 135; i++) {
         setTimeout(() => {
             options.style.transform = `rotate(${i}deg)`
         }, i * 2)
     }
-    for (let i = 0; i < 175; i++) {
+    for (let i = 0; i <= 175; i++) {
         setTimeout(() => {
             searchBtn.style.bottom = `${i}px`
         }, i)
     }
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i <= 100; i++) {
         setTimeout(() => {
             addToParty.style.bottom = `${i}px`
         }, i)
@@ -239,23 +239,34 @@ options.addEventListener('click', () => {
 
 searchBtn.addEventListener('click', () => {
     //bring the buttons back down
-    for (let i = 0; i <= 135; i++) {
+    for (let i = 0; i <= 90; i++) {
         setTimeout(() => {
-            options.style.transform = `rotate(${-i}deg)`
+            options.style.transform = `rotate(${ - i}deg)`
         }, i * 2)
     }
-    for (let i = 175; i >= 0; i--) {
+    for (let i = 0; i <= 175; i++) {
         setTimeout(() => {
-            searchBtn.style.bottom = `${i}px`
-        }, i)
+            searchBtn.style.bottom = `${175 - i}px`
+        }, i * 2)
     }
-    for (let i = 100; i >= 0; i--) {
+    for (let i = 0; i <= 100; i++) {
         setTimeout(() => {
-            addToParty.style.bottom = `${i}px`
-        }, i)
+            addToParty.style.bottom = `${100 - i}px`
+        }, i * 2)
     }
 
     //close the slides
+    for (let i = 0; i <= 1000; i++) {
+        setTimeout(() => {
+            curtainTop.style.top = `${-1000 + i}px`
+        }, i * 2)
+    }
+    for (let i = 0; i <= 1000; i++) {
+        setTimeout(() => {
+            curtainBottom.style.bottom = `${-1000 + i}px`
+        }, i * 2)
+    }
+
     //make the form appear again
 })
 
