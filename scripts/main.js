@@ -1,4 +1,5 @@
 let trainer = new Trainer()
+let pokemon = new Pokemon()
 
 let form = document.getElementById('welcome-page-form')
 let welcomePage = document.getElementById('welcome-page')
@@ -15,9 +16,22 @@ let pkName = document.getElementById('pk-name')
 let pkDescription = document.getElementById('pk-description')
 let pkType = document.getElementById('pk-type')
 let pkImg = document.getElementById('pk-img')
+let pkNumb = document.getElementById('pk-numb')
 
 
 let options = document.getElementById('options')
+let optionsState = 0
+let searchBtn = document.getElementById('search-btn')
+let addToParty = document.getElementById('add-to-party')
+
+
+
+
+
+
+
+
+
 
 pokemonForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -29,11 +43,11 @@ pokemonForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         LoadingScreen.style.display = "none"
         openCurtain()
-    }, 4000)
+    }, 1500)
 })
 
 async function getPokemon(pokemonName) {
-    try {
+    try {   
         let request = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
         let response = await request.json()
 
@@ -44,12 +58,12 @@ async function getPokemon(pokemonName) {
     }
 }
 
-async function getPokemonDescription(pokemon, url) {
+async function getPokemonDescription(url) {
     try {
         let request = await fetch(url)
         let response = await request.json()
 
-        setDResponse(pokemon, response)
+        setDResponse(response)
     } catch (err) {
         // error.innerHTML = "There was an error please try again."
     }
@@ -73,11 +87,9 @@ function openCurtain() {
 }
 
 function createPokemon(response) {
-    pokemon = new Pokemon()
-
     pokemon.setName(response["name"])
 
-    pokemon.setNumb(response["order"])
+    pokemon.setInt(response["id"])
 
     for(let i = 0; i < 6; i++){
         pokemon.setAStat(response["stats"][i]["stat"]["name"], response["stats"][i]["base_stat"])
@@ -104,15 +116,29 @@ function createPokemon(response) {
     }
 
     //description
-    getPokemonDescription(pokemon, response["species"]["url"])
+    getPokemonDescription(response["species"]["url"])
 
 }
 
-function setDResponse(pokemon, desc) {
+function setDResponse(desc) {
     pokemon.setDescription(desc["genera"][2]["genus"])
     
-    displayPokemon(pokemon)
+    displayPokemon()
 }
+
+function displayPokemon() {
+    pkDescription.innerText = pokemon.getDescription()
+    pkImg.src = pokemon.getImg()
+    pkName.innerHTML = pokemon.getName().charAt(0).toUpperCase() + pokemon.getName().slice(1)
+    pkType.innerHTML = pokemon.type.toString().replace(',', ' , ')
+    pkNumb.innerHTML = pokemon.getInt().toString()
+}
+
+
+
+
+
+
 
 
 
@@ -185,12 +211,62 @@ function formDisapear() {
 
 
 
+options.addEventListener('click', () => {
+    for (let i = 0; i < 135; i++) {
+        setTimeout(() => {
+            options.style.transform = `rotate(${i}deg)`
+        }, i * 2)
+    }
+    for (let i = 0; i < 175; i++) {
+        setTimeout(() => {
+            searchBtn.style.bottom = `${i}px`
+        }, i)
+    }
+    for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+            addToParty.style.bottom = `${i}px`
+        }, i)
+    }
+})
 
-function displayPokemon(pokemon) {
-    pkDescription.innerText = pokemon.getDescription()
-    pkImg.src = pokemon.getImg()
-    pkName.innerHTML = pokemon.getName()
-    pkType = pokemon.getTypes()
-}
 
 
+
+
+
+
+
+
+searchBtn.addEventListener('click', () => {
+    //bring the buttons back down
+    for (let i = 0; i <= 135; i++) {
+        setTimeout(() => {
+            options.style.transform = `rotate(${-i}deg)`
+        }, i * 2)
+    }
+    for (let i = 175; i >= 0; i--) {
+        setTimeout(() => {
+            searchBtn.style.bottom = `${i}px`
+        }, i)
+    }
+    for (let i = 100; i >= 0; i--) {
+        setTimeout(() => {
+            addToParty.style.bottom = `${i}px`
+        }, i)
+    }
+
+    //close the slides
+    //make the form appear again
+})
+
+
+
+
+
+
+
+
+
+addToParty.addEventListener('click', () => {
+
+})

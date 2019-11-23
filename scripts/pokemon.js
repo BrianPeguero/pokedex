@@ -3,7 +3,7 @@ class Pokemon {
         this.name = ""
         this.description = ""
         
-        this.numb = 0
+        this.int = 0
 
         this.weight = 0
         this.height = 0
@@ -61,13 +61,13 @@ class Pokemon {
     }
 
 
-    //numb
-    getNumb() {
-        return this.numb
+    //int
+    getInt() {
+        return this.int
     }
 
-    setNumb(numb) {
-        this.numb = numb
+    setInt(int) {
+        this.int = int
     }
 
     //stats
@@ -75,8 +75,8 @@ class Pokemon {
         return this.stats
     }
 
-    setAStat(stat, numb) {
-        this.stats[stat] = numb
+    setAStat(stat, int) {
+        this.stats[stat] = int
     }
 
     //img
