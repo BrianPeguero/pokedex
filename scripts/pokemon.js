@@ -3,7 +3,7 @@ class Pokemon {
         this.name = ""
         this.description = ""
         
-        this.int = 0
+        this.id = 0
 
         this.weight = 0
         this.height = 0
@@ -18,6 +18,8 @@ class Pokemon {
         }
 
         this.img = ""
+
+        this.gif = ""
 
         this.abilities = []
 
@@ -62,12 +64,12 @@ class Pokemon {
 
 
     //int
-    getInt() {
-        return this.int
+    getId() {
+        return this.id
     }
 
-    setInt(int) {
-        this.int = int
+    setId(id) {
+        this.id = id
     }
 
     //stats
@@ -86,6 +88,15 @@ class Pokemon {
 
     setImg(img) {
         this.img = img
+    }
+
+    //gif
+    getGif(){
+        return this.gif
+    }
+
+    setGif(gif) {
+        this.gif = gif
     }
 
     //abilities

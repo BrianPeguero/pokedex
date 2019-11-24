@@ -78,7 +78,7 @@ body {
 
     z-index: 1;
 
-    background: linear-gradient(rgb(0, 213, 228) 50%, rgba(0, 230, 96, 0.603));
+    background: linear-gradient(blue 40%, silver);
 }
 
 .fadeout {

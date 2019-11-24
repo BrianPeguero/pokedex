@@ -91,7 +91,7 @@ function createPokemon(response) {
 
     pokemon.setName(response["name"])
 
-    pokemon.setInt(response["id"])
+    pokemon.setId(response["id"])
 
     for(let i = 0; i < 6; i++){
         pokemon.setAStat(response["stats"][i]["stat"]["name"], response["stats"][i]["base_stat"])
@@ -100,11 +100,13 @@ function createPokemon(response) {
     pokemon.setHeight(response["height"])
     pokemon.setWeight(response["weight"])
 
-    //pokemon img
-    if(response["order"] < 722) {
-        pokemon.setImg(`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${response["name"]}.gif`)
+    //pokemon img and gif
+    if(response["id"] < 722) {
+        pokemon.setGif(`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${response["name"]}.gif`)
+        pokemon.setImg(response["sprites"]["front_default"])
     } else {
         pokemon.setImg(response["sprites"]["front_default"])
+        pokemon.setGif(response["sprites"]["front_default"])
     }
 
     //abilities
@@ -130,10 +132,10 @@ function setDResponse(desc) {
 
 function displayPokemon() {
     pkDescription.innerText = pokemon.getDescription()
-    pkImg.src = pokemon.getImg()
+    pkImg.src = pokemon.getGif()
     pkName.innerHTML = pokemon.getName().charAt(0).toUpperCase() + pokemon.getName().slice(1)
     pkType.innerHTML = pokemon.type.toString().replace(',', ' , ')
-    pkNumb.innerHTML = pokemon.getInt().toString()
+    pkNumb.innerHTML = pokemon.getId().toString()
 }
 
 
@@ -313,4 +315,7 @@ addToParty.addEventListener('click', () => {
 
     //add the pokemon to the trainers party
     trainer.addPokemonToParty(pokemon)
+
+    //add to the screen
+
 })
