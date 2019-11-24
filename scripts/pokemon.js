@@ -24,6 +24,16 @@ class Pokemon {
         this.abilities = []
 
         this.type =[]
+
+        this.color = ""
+    }
+
+    getColor(){
+        return this.color
+    }
+
+    setColor(color) {
+        this.color = color
     }
 
     //name
