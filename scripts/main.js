@@ -49,7 +49,7 @@ async function getPokemon(pokemonName) {
     try {   
         let request = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
         let response = await request.json()
-
+        console.log(response)
         createPokemon(response)
 
     } catch (err) {
@@ -126,11 +126,13 @@ function createPokemon(response) {
 
 function setDResponse(desc) {
     pokemon.setDescription(desc["genera"][2]["genus"])
-    
+    pokemon.setColor(desc["color"]["name"])
+
     displayPokemon()
 }
 
 function displayPokemon() {
+    mainContainer.style.background = `linear-gradient(${pokemon.getColor()} 40%, silver)`
     pkDescription.innerText = pokemon.getDescription()
     pkImg.src = pokemon.getGif()
     pkName.innerHTML = pokemon.getName().charAt(0).toUpperCase() + pokemon.getName().slice(1)
