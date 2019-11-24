@@ -24,6 +24,12 @@ let searchBtn = document.getElementById('search-btn')
 let addToParty = document.getElementById('add-to-party')
 
 
+let pokemonCard1 = document.getElementById('pokemon-card-1')
+let pokemonCard1 = document.getElementById('pokemon-card-2')
+let pokemonCard1 = document.getElementById('pokemon-card-3')
+let pokemonCard1 = document.getElementById('pokemon-card-4')
+let pokemonCard1 = document.getElementById('pokemon-card-5')
+let pokemonCard1 = document.getElementById('pokemon-card-6')
 
 
 
@@ -319,5 +325,5 @@ addToParty.addEventListener('click', () => {
     trainer.addPokemonToParty(pokemon)
 
     //add to the screen
-
+    
 })
