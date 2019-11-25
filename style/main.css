@@ -597,7 +597,7 @@ body {
     border-radius: 10px;
     border: 1px solid grey;
     
-    background: linear-gradient(black -50%, whitesmoke 100%);
+    background: linear-gradient(rgba(0, 0, 0, 0.603) -50%, rgba(245, 245, 245, 0.603) 100%);
     
     transform: skew(-20deg);
     
@@ -606,4 +606,25 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+#pokemon-stat-graph {
+    height: 300px;
+    width: 300px;
+
+    padding: 0;
+    margin: 0;
+    
+    fill:lightblue;
+    stroke:grey;
+    stroke-width:.5;
+
+    opacity: .75;
+
+    position: absolute;
+
+    top: 260px;
+    right: 460px;
+
+    z-index: 5;
 }
