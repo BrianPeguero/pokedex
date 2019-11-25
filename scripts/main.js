@@ -23,18 +23,34 @@ let optionsState = 0
 let searchBtn = document.getElementById('search-btn')
 let addToParty = document.getElementById('add-to-party')
 
-
 let pokemonCard1 = document.getElementById('pokemon-card-1')
-let pokemonCard1 = document.getElementById('pokemon-card-2')
-let pokemonCard1 = document.getElementById('pokemon-card-3')
-let pokemonCard1 = document.getElementById('pokemon-card-4')
-let pokemonCard1 = document.getElementById('pokemon-card-5')
-let pokemonCard1 = document.getElementById('pokemon-card-6')
+let pokemonCard2 = document.getElementById('pokemon-card-2')
+let pokemonCard3 = document.getElementById('pokemon-card-3')
+let pokemonCard4 = document.getElementById('pokemon-card-4')
+let pokemonCard5 = document.getElementById('pokemon-card-5')
+let pokemonCard6 = document.getElementById('pokemon-card-6')
+
+pokemonCards = [pokemonCard1, pokemonCard2, pokemonCard3, pokemonCard4, pokemonCard5, pokemonCard6]
 
 
+let pokemonCardName1 = document.getElementById('pokemon-card-name-1')
+let pokemonCardName2 = document.getElementById('pokemon-card-name-2')
+let pokemonCardName3 = document.getElementById('pokemon-card-name-3')
+let pokemonCardName4 = document.getElementById('pokemon-card-name-4')
+let pokemonCardName5 = document.getElementById('pokemon-card-name-5')
+let pokemonCardName6 = document.getElementById('pokemon-card-name-6')
+
+let pokemonCardNames = [pokemonCardName1, pokemonCardName2, pokemonCardName3, pokemonCardName4, pokemonCardName5, pokemonCardName6]
 
 
+let pokemonCardImg1 = document.getElementById('pokemon-card-img-1')
+let pokemonCardImg2 = document.getElementById('pokemon-card-img-2')
+let pokemonCardImg3 = document.getElementById('pokemon-card-img-3')
+let pokemonCardImg4 = document.getElementById('pokemon-card-img-4')
+let pokemonCardImg5 = document.getElementById('pokemon-card-img-5')
+let pokemonCardImg6 = document.getElementById('pokemon-card-img-6')
 
+let pokemonCardImgs = [pokemonCardImg1, pokemonCardImg2, pokemonCardImg3, pokemonCardImg4, pokemonCardImg5, pokemonCardImg6]
 
 
 
@@ -325,5 +341,11 @@ addToParty.addEventListener('click', () => {
     trainer.addPokemonToParty(pokemon)
 
     //add to the screen
-    
+    for (let i = 0; i < pokemonCardNames.length; i++) {
+        if(pokemonCardNames[i].innerHTML != trainer.party[i].getName()) {
+            pokemonCardNames[i].innerHTML = pokemon.name
+            pokemonCardImgs[i].src = pokemon.getImg()
+            pokemonCards[i].classList.add('display-card')
+        }
+    }
 })
