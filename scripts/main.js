@@ -154,7 +154,7 @@ function setDResponse(desc) {
 }
 
 function displayPokemon() {
-    mainContainer.style.background = `linear-gradient(${pokemon.getColor()} 40%, silver)`
+    mainContainer.style.background = `linear-gradient(${pokemon.getColor()} -27%, silver 46%, ${pokemon.getColor()} 178%)`
     pkDescription.innerText = pokemon.getDescription()
     pkImg.src = pokemon.getGif()
     pkName.innerHTML = pokemon.getName().charAt(0).toUpperCase() + pokemon.getName().slice(1)
