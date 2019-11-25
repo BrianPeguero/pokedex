@@ -54,6 +54,7 @@ let pokemonCardImgs = [pokemonCardImg1, pokemonCardImg2, pokemonCardImg3, pokemo
 
 
 
+
 pokemonForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
