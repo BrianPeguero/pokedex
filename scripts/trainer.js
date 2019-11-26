@@ -44,4 +44,16 @@ class Trainer {
 
         this.party = tempList
     }
+
+    all() {
+        return this.party
+    }
+
+    get(name) {
+        for(let i = 0; i < this.party.length; i++) {
+            if(this.party[i].name === name) {
+                return this.party[i]
+            }
+        }
+    }
 }
